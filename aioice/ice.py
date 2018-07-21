@@ -431,7 +431,7 @@ class Connection:
         done, pending = await asyncio.wait(fs, return_when=asyncio.FIRST_COMPLETED)
         for task in pending:
             task.cancel()
-        assert len(done) == 1
+        assert len(done) >= 1
         result = done.pop().result()
         if result[0] is None:
             raise ConnectionError('Connection lost while receiving data')
